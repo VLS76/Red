@@ -1,0 +1,139 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    overflow-y: auto;
+}
+
+.sidebar h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.main-content h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Estilos para los acordeones (campos) */
+.filter-category {
+    margin-bottom: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.filter-category.Especie { border: 2px solid #ff7f0e; }
+.filter-category.Dispositivo { border: 2px solid #1f77b4; }
+.filter-category.Estudio { border: 2px solid #2ca02c; }
+.filter-category.Proyecto { border: 2px solid #d62728; }
+.filter-category.Status { border: 2px solid #9467bd; }
+.filter-category.Institucion { border: 2px solid #8c564b; }
+
+
+.category-header {
+    background-color: #e0e0e0;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category-header::after {
+    content: '▼';
+    font-size: 0.8em;
+    transition: transform 0.3s ease;
+}
+
+.category-header.active::after {
+    transform: rotate(180deg);
+}
+
+.category-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: #f0f0f0;
+    padding: 0 15px; /* Padding inicial cero */
+}
+
+.category-content.expanded {
+    max-height: 500px; /* Suficiente para expandirse */
+    padding: 10px 15px; /* Padding cuando está expandido */
+}
+
+.category-content label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.category-content input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Estilos para la visualización de la red */
+#network-visualization {
+    width: 100%;
+    height: 600px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* Estilos para los detalles de la persona al hacer clic */
+.person-details-box {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: none; /* Oculto por defecto */
+}
+
+.person-details-box h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.person-details-box p {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.person-details-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.person-details-box ul li {
+    margin-bottom: 5px;
+    color: #666;
+}
