@@ -1,425 +1,407 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Datos de las Personas (Ejemplo con 15 personas)
-    const peopleData = [
-        {
-            id: 1,
-            name: "Dr. Ana García",
-            Especie: ["Ovina", "Vacuna"],
-            Dispositivo: ["RFID", "Sensores acústicos"],
-            Estudio: ["Comportamiento alimenticio", "Manejo"],
-            Proyecto: ["Project1"],
-            Status: "IP",
-            Institucion: "UPV"
-        },
-        {
-            id: 2,
-            name: "Marta López",
-            Especie: ["Ovina"],
-            Dispositivo: ["RFID", "Collares"],
-            Estudio: ["Comportamiento social"],
-            Proyecto: ["Project1", "Project2"],
-            Status: "Predoc",
-            Institucion: "UPV"
-        },
-        {
-            id: 3,
-            name: "Pedro Ruíz",
-            Especie: ["Caprina", "Porcina"],
-            Dispositivo: ["Cámaras de visión", "IA"],
-            Estudio: ["Nutrición"],
-            Proyecto: ["Project2"],
-            Status: "Postdoc",
-            Institucion: "UPV"
-        },
-        {
-            id: 4,
-            name: "Dr. Juan Pérez",
-            Especie: ["Avícola"],
-            Dispositivo: ["Alimentadores automáticos", "Sensores de movimiento"],
-            Estudio: ["Salud"],
-            Proyecto: ["Project3"],
-            Status: "IP",
-            Institucion: "UdL"
-        },
-        {
-            id: 5,
-            name: "Laura Gómez",
-            Especie: ["Avícola", "Cunícula"],
-            Dispositivo: ["Drones", "Básculas"],
-            Estudio: ["Manejo"],
-            Proyecto: ["Project3", "Project4"],
-            Status: "Predoc",
-            Institucion: "UdL"
-        },
-        {
-            id: 6,
-            name: "Sofía Hernández",
-            Especie: ["Vacuna"],
-            Dispositivo: ["RFID", "Collares"],
-            Estudio: ["Comportamiento alimenticio"],
-            Proyecto: ["Project1"],
-            Status: "Técnico",
-            Institucion: "UdL"
-        },
-        {
-            id: 7,
-            name: "Dr. Carlos Sanz",
-            Especie: ["Porcina"],
-            Dispositivo: ["IA", "Cámaras de visión"],
-            Estudio: ["Nutrición", "Salud"],
-            Proyecto: ["Project2"],
-            Status: "IP",
-            Institucion: "UCO"
-        },
-        {
-            id: 8,
-            name: "Elena Marín",
-            Especie: ["Porcina"],
-            Dispositivo: ["Alimentadores automáticos"],
-            Estudio: ["Comportamiento social"],
-            Proyecto: ["Project2"],
-            Status: "Postdoc",
-            Institucion: "UCO"
-        },
-        {
-            id: 9,
-            name: "Francisco Jiménez",
-            Especie: ["Caprina"],
-            Dispositivo: ["Vallados virtuales"],
-            Estudio: ["Manejo"],
-            Proyecto: ["Project1"],
-            Status: "Técnico",
-            Institucion: "UCO"
-        },
-        {
-            id: 10,
-            name: "Dr. Isabel Castro",
-            Especie: ["Ovina", "Caprina"],
-            Dispositivo: ["RFID", "Sensores acústicos"],
-            Estudio: ["Comportamiento alimenticio"],
-            Proyecto: ["Project4"],
-            Status: "IP",
-            Institucion: "USAL"
-        },
-        {
-            id: 11,
-            name: "Roberto Núñez",
-            Especie: ["Ovina"],
-            Dispositivo: ["Collares"],
-            Estudio: ["Nutrición"],
-            Proyecto: ["Project4"],
-            Status: "Predoc",
-            Institucion: "USAL"
-        },
-        {
-            id: 12,
-            name: "Paloma Vidal",
-            Especie: ["Vacuna"],
-            Dispositivo: ["Drones"],
-            Estudio: ["Salud"],
-            Proyecto: ["Project3"],
-            Status: "Postdoc",
-            Institucion: "USAL"
-        },
-        {
-            id: 13,
-            name: "Dr. David Torres",
-            Especie: ["Cunícula"],
-            Dispositivo: ["Básculas", "Sensores de movimiento"],
-            Estudio: ["Manejo"],
-            Proyecto: ["Project1"],
-            Status: "IP",
-            Institucion: "UAB"
-        },
-        {
-            id: 14,
-            name: "Natalia Vega",
-            Especie: ["Avícola"],
-            Dispositivo: ["Alimentadores automáticos"],
-            Estudio: ["Comportamiento social"],
-            Proyecto: ["Project2"],
-            Status: "Predoc",
-            Institucion: "UAB"
-        },
-        {
-            id: 15,
-            name: "Sergio Morales",
-            Especie: ["Porcina"],
-            Dispositivo: ["Cámaras de visión"],
-            Estudio: ["Nutrición"],
-            Proyecto: ["Project3"],
-            Status: "Técnico",
-            Institucion: "UAB"
-        }
+
+    // --- DATOS INICIALES ---
+    const initialPeopleData = [
+        { id: 1, nombre: 'Ana García', especie: ['Ovina', 'Caprina'], dispositivos: ['RFID', 'Collares'], estudio: ['Comportamiento social'], proyectos: ['Project1', 'Project2'], status: 'IP', institucion: 'UPV' },
+        { id: 2, nombre: 'Bruno Soler', especie: ['Ovina'], dispositivos: ['RFID', 'Drones'], estudio: ['Manejo'], proyectos: ['Project1'], status: 'Postdoc', institucion: 'UPV' },
+        { id: 3, nombre: 'Carla Pons', especie: ['Caprina'], dispositivos: ['Collares', 'Cámaras de visión'], estudio: ['Comportamiento social'], proyectos: ['Project2'], status: 'Predoc', institucion: 'UPV' },
+        { id: 4, nombre: 'David Roca', especie: ['Porcina'], dispositivos: ['IA', 'Alimentadores automáticos'], estudio: ['Nutrición'], proyectos: ['Project3'], status: 'IP', institucion: 'UdL' },
+        { id: 5, nombre: 'Elena Ferré', especie: ['Porcina', 'Avícola'], dispositivos: ['Alimentadores automáticos', 'Básculas'], estudio: ['Nutrición'], proyectos: ['Project3'], status: 'Técnico', institucion: 'UdL' },
+        { id: 6, nombre: 'Felipe Sanz', especie: ['Vacuna'], dispositivos: ['Collares', 'Vallados virtuales'], estudio: ['Comportamiento alimenticio'], proyectos: ['Project4'], status: 'IP', institucion: 'UCO' },
+        { id: 7, nombre: 'Gloria Mínguez', especie: ['Vacuna'], dispositivos: ['Collares', 'Sensores de movimiento'], estudio: ['Salud'], proyectos: ['Project4'], status: 'Postdoc', institucion: 'UCO' },
+        { id: 8, nombre: 'Hector Blanes', especie: ['Ovina'], dispositivos: ['Cámaras de visión', 'IA'], estudio: ['Comportamiento social'], proyectos: ['Project2'], status: 'Predoc', institucion: 'USAL' },
+        { id: 9, nombre: 'Irene Jiménez', especie: ['Ovina', 'Cunícula'], dispositivos: ['Sensores acústicos', 'RFID'], estudio: ['Manejo'], proyectos: ['Project2', 'Project4'], status: 'IP', institucion: 'USAL' },
+        { id: 10, nombre: 'Javier Luna', especie: ['Avícola'], dispositivos: ['Básculas', 'Drones'], estudio: ['Nutrición'], proyectos: [], status: 'Técnico', institucion: 'UAB' },
+        { id: 11, nombre: 'Laura Vidal', especie: ['Avícola', 'Porcina'], dispositivos: ['Drones', 'IA'], estudio: ['Manejo'], proyectos: ['Project1', 'Project3'], status: 'IP', institucion: 'UAB' },
+        { id: 12, nombre: 'Marco Rubio', especie: ['Caprina'], dispositivos: ['Sensores de movimiento', 'Vallados virtuales'], estudio: ['Salud'], proyectos: ['Project1'], status: 'Postdoc', institucion: 'UPV' },
+        { id: 13, nombre: 'Nora Casado', especie: ['Porcina'], dispositivos: ['IA', 'Cámaras de visión'], estudio: ['Comportamiento social'], proyectos: ['Project3'], status: 'Predoc', institucion: 'UdL' },
+        { id: 14, nombre: 'Oscar Pardo', especie: ['Vacuna'], dispositivos: ['RFID', 'Básculas'], estudio: ['Nutrición'], proyectos: ['Project4'], status: 'Técnico', institucion: 'UCO' },
+        { id: 15, nombre: 'Paula Navarro', especie: ['Caprina', 'Vacuna'], dispositivos: ['Collares', 'Cámaras de visión'], estudio: ['Comportamiento alimenticio'], proyectos: ['Project1', 'Project4'], status: 'IP', institucion: 'UCO' }
     ];
 
-    // 2. Definición de los Campos y sus Indicadores
-    const fields = {
-        Especie: ["Ovina", "Caprina", "Vacuna", "Porcina", "Avícola", "Cunícula"],
-        Dispositivo: ["Drones", "RFID", "Collares", "Cámaras de visión", "IA", "Alimentadores automáticos", "Básculas", "Sensores acústicos", "Sensores de movimiento", "Vallados virtuales"],
-        Estudio: ["Comportamiento alimenticio", "Comportamiento social", "Manejo", "Nutrición", "Salud"],
-        Proyecto: ["Project1", "Project2", "Project3", "Project4"],
-        Status: ["IP", "Predoc", "Postdoc", "Técnico"],
-        Institucion: ["UPV", "UdL", "UCO", "USAL", "UAB"]
+    const filterConfig = {
+        'Especie': ['Ovina', 'Caprina', 'Vacuna', 'Porcina', 'Avícola', 'Cunícula'],
+        'Dispositivos': ['Drones', 'RFID', 'Collares', 'Cámaras de visión', 'IA', 'Alimentadores automáticos', 'Básculas', 'Sensores acústicos', 'Sensores de movimiento', 'Vallados virtuales'],
+        'Estudio': ['Comportamiento alimenticio', 'Comportamiento social', 'Manejo', 'Nutrición', 'Salud'],
+        'Proyectos': ['Project1', 'Project2', 'Project3', 'Project4'],
+        'Status': ['IP', 'Predoc', 'Postdoc', 'Técnico'],
+        'Institución': ['UPV', 'UdL', 'UCO', 'USAL', 'UAB']
     };
 
+    let peopleData = [];
+
+    // --- GESTIÓN DE DATOS (localStorage) ---
+    function saveData() {
+        localStorage.setItem('peopleNetworkData', JSON.stringify(peopleData));
+    }
+
+    function loadData() {
+        const savedData = localStorage.getItem('peopleNetworkData');
+        if (savedData) {
+            peopleData = JSON.parse(savedData);
+        } else {
+            peopleData = initialPeopleData;
+            saveData();
+        }
+    }
+
+    // --- RENDERIZADO DE LA UI ---
     const filtersContainer = document.getElementById('filters-container');
-    const networkContainer = document.getElementById('network-visualization');
-    const personDetailsBox = document.getElementById('person-details');
-    const personNameElement = document.getElementById('person-name');
-    const personIndicatorsElement = document.getElementById('person-indicators');
+    const formFieldsContainer = document.getElementById('form-fields-container');
 
-    let selectedFilters = {}; // Objeto para almacenar los filtros seleccionados
+    function renderFiltersAndForm() {
+        filtersContainer.innerHTML = '';
+        formFieldsContainer.innerHTML = '';
 
-    // Inicializar selectedFilters con arrays vacíos para cada campo
-    for (const field in fields) {
-        selectedFilters[field] = [];
-    }
+        for (const category in filterConfig) {
+            const options = filterConfig[category];
+            const key = category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Normaliza el nombre de la categoría
 
-    // 3. Generación Dinámica de Filtros
-    function generateFilters() {
-        for (const field in fields) {
-            const categoryDiv = document.createElement('div');
-            categoryDiv.classList.add('filter-category', field); // Añade el nombre del campo como clase para el borde
-            
-            const headerDiv = document.createElement('div');
-            headerDiv.classList.add('category-header');
-            headerDiv.textContent = field;
-            categoryDiv.appendChild(headerDiv);
-
-            const contentDiv = document.createElement('div');
-            contentDiv.classList.add('category-content');
-
-            fields[field].forEach(indicator => {
-                const label = document.createElement('label');
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.value = indicator;
-                checkbox.dataset.field = field; // Para identificar el campo al que pertenece
-
-                checkbox.addEventListener('change', (event) => {
-                    if (event.target.checked) {
-                        selectedFilters[field].push(indicator);
-                    } else {
-                        selectedFilters[field] = selectedFilters[field].filter(item => item !== indicator);
-                    }
-                    updateNetwork(); // Actualizar la red al cambiar un filtro
-                });
-
-                label.appendChild(checkbox);
-                label.appendChild(document.createTextNode(indicator));
-                contentDiv.appendChild(label);
+            // Crear filtros en panel izquierdo
+            const filterGroup = document.createElement('details');
+            filterGroup.className = 'filter-group';
+            filterGroup.setAttribute('data-category', category);
+            filterGroup.innerHTML = `<summary>${category}</summary><div class="filter-options"></div>`;
+            const optionsContainer = filterGroup.querySelector('.filter-options');
+            options.forEach(option => {
+                optionsContainer.innerHTML += `
+                    <label>
+                        <input type="checkbox" class="filter-checkbox" data-category="${key}" value="${option}">
+                        ${option}
+                    </label>
+                `;
             });
-            categoryDiv.appendChild(contentDiv);
-            filtersContainer.appendChild(categoryDiv);
+            filtersContainer.appendChild(filterGroup);
 
-            // Manejar el despliegue/plegado del acordeón
-            headerDiv.addEventListener('click', () => {
-                contentDiv.classList.toggle('expanded');
-                headerDiv.classList.toggle('active');
+            // Crear campos de selección en el formulario CRUD
+            const formFieldGroup = document.createElement('div');
+            let selectHTML = `<label for="form-${key}">${category}:</label><select id="form-${key}" multiple>`;
+            options.forEach(option => {
+                selectHTML += `<option value="${option}">${option}</option>`;
             });
+            selectHTML += `</select>`;
+            formFieldGroup.innerHTML = selectHTML;
+            formFieldsContainer.appendChild(formFieldGroup);
         }
     }
 
-    // 4. Filtrado de Personas
-    function filterPeople() {
-        const activeFilters = Object.values(selectedFilters).flat(); // Obtener todos los indicadores seleccionados
 
-        if (activeFilters.length === 0) {
-            return peopleData; // Si no hay filtros seleccionados, mostrar todas las personas
-        }
+    // --- LÓGICA DE VISUALIZACIÓN DE RED ---
+    const networkContainer = document.getElementById('network');
+    let network = null;
 
-        const filtered = peopleData.filter(person => {
-            return activeFilters.some(filter => {
-                for (const field in fields) {
-                    if (Array.isArray(person[field])) { // Para campos con múltiples indicadores (Especie, Dispositivo, etc.)
-                        if (person[field].includes(filter)) {
-                            return true;
-                        }
-                    } else if (person[field] === filter) { // Para campos con un solo indicador (Status, Institucion)
-                        return true;
-                    }
+    function initializeNetwork() {
+        const options = {
+            nodes: {
+                shape: 'dot',
+                font: {
+                    size: 14,
+                    color: '#333'
+                },
+                borderWidth: 2
+            },
+            edges: {
+                width: 1,
+                color: {
+                    color: '#848484',
+                    highlight: '#0056b3',
+                    hover: '#0056b3'
+                },
+                arrows: {
+                    to: { enabled: false }
+                },
+                smooth: {
+                    enabled: true,
+                    type: "dynamic"
                 }
-                return false;
+            },
+            physics: {
+                solver: 'forceAtlas2Based',
+                forceAtlas2Based: {
+                    gravitationalConstant: -50,
+                    centralGravity: 0.01,
+                    springConstant: 0.08,
+                    springLength: 100,
+                    damping: 0.4,
+                    avoidOverlap: 0.5
+                }
+            },
+            interaction: {
+                hover: true,
+                tooltipDelay: 200
+            }
+        };
+        network = new vis.Network(networkContainer, { nodes: [], edges: [] }, options);
+
+        network.on("click", (params) => {
+            if (params.nodes.length > 0) {
+                const personId = params.nodes[0];
+                showPersonInfo(personId);
+                loadPersonInForm(personId);
+            } else {
+                hidePersonInfo();
+            }
+        });
+    }
+
+    function updateVisualization() {
+        const selectedFilters = getSelectedFilters();
+        const filteredPeople = filterPeople(selectedFilters);
+
+        const { nodes, edges } = createNetworkData(filteredPeople);
+
+        network.setData({ nodes, edges });
+    }
+
+    function getSelectedFilters() {
+        const selected = {};
+        document.querySelectorAll('.filter-checkbox:checked').forEach(checkbox => {
+            const category = checkbox.dataset.category;
+            if (!selected[category]) {
+                selected[category] = [];
+            }
+            selected[category].push(checkbox.value);
+        });
+        return selected;
+    }
+    
+    function filterPeople(filters) {
+        if (Object.keys(filters).length === 0) {
+            return peopleData; // Mostrar todos si no hay filtros
+        }
+
+        return peopleData.filter(person => {
+            return Object.entries(filters).some(([category, values]) => {
+                 const personValue = person[category];
+                 if (!personValue) return false;
+
+                 if (Array.isArray(personValue)) {
+                     return personValue.some(item => values.includes(item));
+                 } else {
+                     return values.includes(personValue);
+                 }
             });
         });
-        return filtered;
     }
 
-    // 5. Visualización de la Red con vis.js
-    let network = null; // Variable para almacenar la instancia de la red
-
-    function updateNetwork() {
-        const filteredPeople = filterPeople();
-
+    function createNetworkData(filteredPeople) {
         const nodes = [];
-        const edges = [];
-        const ipNodes = {}; // Para agrupar IPs y sus satélites
+        const edges = new Set();
+        
+        const peopleMap = new Map(filteredPeople.map(p => [p.id, p]));
+        
+        // Lógica de jerarquía IP/Satélite
+        const institutionGroups = {};
+        filteredPeople.forEach(p => {
+            if (!institutionGroups[p.institucion]) {
+                institutionGroups[p.institucion] = { ip: [], others: [] };
+            }
+            if (p.status === 'IP') {
+                institutionGroups[p.institucion].ip.push(p);
+            } else {
+                institutionGroups[p.institucion].others.push(p);
+            }
+        });
 
-        // Crear nodos
         filteredPeople.forEach(person => {
-            const isIP = person.Status === "IP";
-            const nodeSize = isIP ? 30 : 20; // IPs más grandes
-
-            // Color del nodo basado en la institución
-            let nodeColor;
-            switch(person.Institucion) {
-                case "UPV": nodeColor = "#ff7f0e"; break; // Naranja
-                case "UdL": nodeColor = "#1f77b4"; break; // Azul
-                case "UCO": nodeColor = "#2ca02c"; break; // Verde
-                case "USAL": nodeColor = "#d62728"; break; // Rojo
-                case "UAB": nodeColor = "#9467bd"; break; // Púrpura
-                default: nodeColor = "#888";
+            let isSatellite = false;
+            const group = institutionGroups[person.institucion];
+            if (group && group.ip.length > 0 && person.status !== 'IP') {
+                isSatellite = true;
             }
 
             nodes.push({
                 id: person.id,
-                label: person.name,
-                shape: 'dot',
-                size: nodeSize,
-                color: {
-                    background: nodeColor,
-                    border: '#333'
-                },
-                font: { color: '#333' },
-                personData: person // Almacenar todos los datos de la persona en el nodo
+                label: person.nombre,
+                title: `${person.nombre} (${person.status} en ${person.institucion})`,
+                value: person.status === 'IP' ? 30 : 15, // Tamaño del nodo
+                mass: person.status === 'IP' ? 5 : 1, // 'Peso' para la física
+                color: isSatellite ? '#f4a261' : (person.status === 'IP' ? '#e76f51' : '#2a9d8f')
             });
-
-            if (isIP) {
-                if (!ipNodes[person.Institucion]) {
-                    ipNodes[person.Institucion] = [];
-                }
-                ipNodes[person.Institucion].push(person.id);
-            }
         });
 
         // Crear conexiones (edges)
-        // Conectar personas de la misma institución y entre sí
-        filteredPeople.forEach(person1 => {
-            filteredPeople.forEach(person2 => {
-                if (person1.id < person2.id) { // Para evitar duplicados y auto-conexiones
-                    let connectionType = [];
-
-                    // Conexión por Institución
-                    if (person1.Institucion === person2.Institucion) {
-                        connectionType.push("Institución");
-                        if (person1.Status === "IP" && person2.Status !== "IP" || person2.Status === "IP" && person1.Status !== "IP") {
-                             // Para la disposición satelital, vis.js maneja esto con grupos o physics,
-                             // pero para una representación simple, los conectamos.
-                        }
-                    }
-
-                    // Conexión por Proyectos Comunes
-                    const commonProjects = person1.Proyecto.filter(p1 => person2.Proyecto.includes(p1));
-                    if (commonProjects.length > 0) {
-                        connectionType.push(`Proyectos: ${commonProjects.join(', ')}`);
-                    }
-
-                    // Puedes añadir más tipos de conexiones si lo deseas
-                    // Por ejemplo, si tienen la misma Especie o Dispositivo
-                    const commonSpecies = person1.Especie.filter(s1 => person2.Especie.includes(s1));
-                    if (commonSpecies.length > 0) {
-                        connectionType.push(`Especie: ${commonSpecies.join(', ')}`);
-                    }
-
-                    if (connectionType.length > 0) {
-                        edges.push({
-                            from: person1.id,
-                            to: person2.id,
-                            arrows: 'to',
-                            label: connectionType.join('\n'), // Mostrar el tipo de conexión
-                            font: { align: 'middle', size: 10, color: '#666', background: 'white' },
-                            color: { color: '#aaa', highlight: '#333' }
-                        });
-                    }
+        for (let i = 0; i < filteredPeople.length; i++) {
+            for (let j = i + 1; j < filteredPeople.length; j++) {
+                const personA = filteredPeople[i];
+                const personB = filteredPeople[j];
+                const commonality = findCommonality(personA, personB);
+                if (commonality.length > 0) {
+                    const edgeId = [personA.id, personB.id].sort().join('-');
+                    edges.add({
+                        id: edgeId,
+                        from: personA.id,
+                        to: personB.id,
+                        title: `En común: ${commonality.join(', ')}`
+                    });
                 }
-            });
-        });
-
-        const data = {
-            nodes: new vis.DataSet(nodes),
-            edges: new vis.DataSet(edges)
-        };
-
-        const options = {
-            nodes: {
-                borderWidth: 2,
-                shape: 'dot',
-                font: {
-                    size: 12,
-                    color: '#333'
-                }
-            },
-            edges: {
-                color: { inherit: true },
-                width: 1,
-                smooth: {
-                    type: 'continuous'
-                }
-            },
-            physics: {
-                forceAtlas2Based: {
-                    gravitationalConstant: -26,
-                    centralGravity: 0.005,
-                    springLength: 200,
-                    springConstant: 0.18
-                },
-                maxVelocity: 146,
-                solver: 'forceAtlas2Based',
-                timestep: 0.35,
-                stabilization: { iterations: 150 }
-            },
-            interaction: {
-                hover: true,
-                tooltipDelay: 200,
-                hideEdgesOnDrag: true,
-                hideNodesOnDrag: false
-                //zoomView: false // Deshabilita el zoom si no lo quieres
             }
-        };
-
-        // Si ya existe una instancia de la red, la destruimos para crear una nueva
-        if (network !== null) {
-            network.destroy();
         }
-
-        network = new vis.Network(networkContainer, data, options);
-
-        // Manejar el clic en un nodo para mostrar los detalles de la persona
-        network.on("click", (params) => {
-            if (params.nodes.length > 0) {
-                const nodeId = params.nodes[0];
-                const clickedNode = data.nodes.get(nodeId);
-                const person = clickedNode.personData;
-
-                personNameElement.textContent = person.name;
-                personIndicatorsElement.innerHTML = `
-                    <ul>
-                        <li><strong>Especie:</strong> ${person.Especie.join(', ')}</li>
-                        <li><strong>Dispositivo:</strong> ${person.Dispositivo.join(', ')}</li>
-                        <li><strong>Estudio:</strong> ${person.Estudio.join(', ')}</li>
-                        <li><strong>Proyecto:</strong> ${person.Proyecto.join(', ')}</li>
-                        <li><strong>Status:</strong> ${person.Status}</li>
-                        <li><strong>Institución:</strong> ${person.Institucion}</li>
-                    </ul>
-                `;
-                personDetailsBox.style.display = 'block';
-            } else {
-                personDetailsBox.style.display = 'none'; // Ocultar si no se clicó en ningún nodo
-            }
-        });
-
-        // Opcional: Para el diseño "satelital"
-        // vis.js maneja esto mejor con sus propias opciones de diseño de física y grupos.
-        // Podrías definir "grupos" para IPs y no IPs, y configurar sus fuerzas.
-        // Para una implementación más avanzada de la disposición satelital,
-        // podrías necesitar manipular las posiciones de los nodos directamente
-        // después de que la física se estabilice, o usar una librería de fuerza de diseño
-        // como d3-force para un control más fino.
-        // Por ahora, las conexiones y el tamaño diferenciado ya dan una pista.
+        
+        return { nodes, edges: Array.from(edges) };
     }
 
-    // Inicializar: generar filtros y mostrar la red con todas las personas
-    generateFilters();
-    updateNetwork();
+    function findCommonality(p1, p2) {
+        const common = [];
+        if (p1.institucion === p2.institucion) common.push(p1.institucion);
+        
+        Object.keys(filterConfig).forEach(cat => {
+            const key = cat.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const val1 = p1[key] || [];
+            const val2 = p2[key] || [];
+            if (Array.isArray(val1) && Array.isArray(val2)) {
+                const shared = val1.filter(v => val2.includes(v));
+                if (shared.length > 0) common.push(...shared);
+            }
+        });
+
+        return [...new Set(common)]; // Devolver únicos
+    }
+
+    // --- LÓGICA DE LA TARJETA DE INFORMACIÓN ---
+    const infoCard = document.getElementById('person-info-card');
+    const infoName = document.getElementById('info-name');
+    const infoDetails = document.getElementById('info-details');
+    
+    function showPersonInfo(personId) {
+        const person = peopleData.find(p => p.id === personId);
+        if (!person) return;
+
+        infoName.textContent = person.nombre;
+        let detailsHtml = `<p><strong>ID:</strong> ${person.id}</p>`;
+        for (const category in filterConfig) {
+             const key = category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+             const value = person[key];
+             if(value && (!Array.isArray(value) || value.length > 0)) {
+                detailsHtml += `<p><strong>${category}:</strong> ${Array.isArray(value) ? value.join(', ') : value}</p>`;
+             }
+        }
+        infoDetails.innerHTML = detailsHtml;
+        infoCard.style.display = 'block';
+    }
+
+    function hidePersonInfo() {
+        infoCard.style.display = 'none';
+    }
+
+
+    // --- LÓGICA DEL FORMULARIO CRUD ---
+    const form = document.getElementById('person-form');
+    const personIdInput = document.getElementById('person-id');
+    const personNameInput = document.getElementById('person-name');
+
+    function loadPersonInForm(personId) {
+        const person = peopleData.find(p => p.id === personId);
+        if (!person) return;
+
+        clearForm();
+        personIdInput.value = person.id;
+        personNameInput.value = person.nombre;
+        
+        for (const category in filterConfig) {
+            const key = category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const select = document.getElementById(`form-${key}`);
+            const personValue = person[key] || [];
+            const valuesToSelect = Array.isArray(personValue) ? personValue : [personValue];
+            
+            for (const option of select.options) {
+                option.selected = valuesToSelect.includes(option.value);
+            }
+        }
+    }
+
+    function clearForm() {
+        form.reset();
+        personIdInput.value = '';
+        document.querySelectorAll('#form-fields-container select').forEach(select => {
+            Array.from(select.options).forEach(opt => opt.selected = false);
+        });
+    }
+
+    function handleCreate() {
+        if (!personNameInput.value) {
+            alert('El nombre es obligatorio.');
+            return;
+        }
+
+        const newId = peopleData.length > 0 ? Math.max(...peopleData.map(p => p.id)) + 1 : 1;
+        const newPerson = { id: newId, nombre: personNameInput.value };
+
+        for (const category in filterConfig) {
+            const key = category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const select = document.getElementById(`form-${key}`);
+            const values = Array.from(select.selectedOptions).map(opt => opt.value);
+            // Si la categoría no es de selección múltiple (ej. Status, Institución), tomar solo el primer valor.
+            // En esta configuración, todas son `multiple` para consistencia, pero se podría adaptar.
+            newPerson[key] = values; 
+        }
+        
+        // Simplificación: Status e Institución no deberían ser multi-selección.
+        newPerson['status'] = newPerson['status'][0] || '';
+        newPerson['institucion'] = newPerson['institucion'][0] || '';
+
+
+        peopleData.push(newPerson);
+        saveData();
+        updateVisualization();
+        clearForm();
+    }
+
+    function handleUpdate() {
+        const idToUpdate = parseInt(personIdInput.value);
+        if (!idToUpdate) {
+            alert('Selecciona una persona de la red para modificar.');
+            return;
+        }
+
+        const personIndex = peopleData.findIndex(p => p.id === idToUpdate);
+        if (personIndex === -1) return;
+        
+        const updatedPerson = { id: idToUpdate, nombre: personNameInput.value };
+        for (const category in filterConfig) {
+            const key = category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const select = document.getElementById(`form-${key}`);
+            const values = Array.from(select.selectedOptions).map(opt => opt.value);
+            updatedPerson[key] = values;
+        }
+        
+        updatedPerson['status'] = updatedPerson['status'][0] || '';
+        updatedPerson['institucion'] = updatedPerson['institucion'][0] || '';
+
+        peopleData[personIndex] = updatedPerson;
+        saveData();
+        updateVisualization();
+        showPersonInfo(idToUpdate); // Actualizar tarjeta de info
+    }
+
+    function handleDelete() {
+        const idToDelete = parseInt(personIdInput.value);
+        if (!idToDelete) {
+            alert('Selecciona una persona de la red para eliminar.');
+            return;
+        }
+        
+        if (confirm(`¿Seguro que quieres eliminar a ${peopleData.find(p=>p.id === idToDelete).nombre}?`)) {
+            peopleData = peopleData.filter(p => p.id !== idToDelete);
+            saveData();
+            updateVisualization();
+            clearForm();
+            hidePersonInfo();
+        }
+    }
+
+
+    // --- INICIALIZACIÓN Y EVENT LISTENERS ---
+    loadData();
+    renderFiltersAndForm();
+    initializeNetwork();
+    updateVisualization();
+
+    document.getElementById('filters-container').addEventListener('change', updateVisualization);
+    document.getElementById('close-card-btn').addEventListener('click', hidePersonInfo);
+    
+    document.getElementById('create-btn').addEventListener('click', handleCreate);
+    document.getElementById('update-btn').addEventListener('click', handleUpdate);
+    document.getElementById('delete-btn').addEventListener('click', handleDelete);
+    document.getElementById('clear-form-btn').addEventListener('click', clearForm);
 });
