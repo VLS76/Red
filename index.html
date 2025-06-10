@@ -3,27 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test de Personas - GitHub</title>
+    <title>Visualizador de Red de Personas</title>
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <aside class="sidebar">
-            <h1>Filtros</h1>
-            <div id="filters-container">
-                </div>
-        </aside>
-        <main class="main-content">
-            <h2>Personas con Indicadores Comunes</h2>
-            <div id="network-visualization"></div>
-            <div id="person-details" class="person-details-box">
-                <h3>Detalles de la Persona</h3>
-                <p id="person-name"></p>
-                <div id="person-indicators"></div>
+    <div class="main-container">
+        <div id="filters-panel" class="panel">
+            <h2>Filtros</h2>
+            <div id="filters-container"></div>
+        </div>
+
+        <div id="network-container" class="panel">
+            <div id="network"></div>
+            <div id="person-info-card" class="info-card" style="display: none;">
+                <button id="close-card-btn">X</button>
+                <h3 id="info-name"></h3>
+                <div id="info-details"></div>
             </div>
-        </main>
+        </div>
+
+        <div id="crud-panel" class="panel">
+            <h2>Gestionar Personas</h2>
+            <form id="person-form">
+                <input type="hidden" id="person-id">
+                <label for="person-name">Nombre:</label>
+                <input type="text" id="person-name" required>
+
+                <div id="form-fields-container">
+                    </div>
+
+                <div class="crud-buttons">
+                    <button type="button" id="create-btn">Crear</button>
+                    <button type="button" id="update-btn">Modificar</button>
+                    <button type="button" id="delete-btn">Eliminar</button>
+                    <button type="button" id="clear-form-btn">Limpiar</button>
+                </div>
+            </form>
+        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
